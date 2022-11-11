@@ -1,3 +1,6 @@
+import math
+
+
 def insertion_sort(arr, comp_func=None):
     """
     _worst-case performance: O(n^2)
@@ -27,6 +30,50 @@ def comp(a, b):
         return False
     else:
         return True
+    pass
 
 
-help(insertion_sort.__doc__)
+def merge(A, p, q, r):
+    n_1 = q - p + 1
+    n_2 = r - q
+    left = []
+    right = []
+    for i in range(0, n_1):
+        left.append(A[p + i])
+    for j in range(0, n_2):
+        right.append(A[q + j + 1])
+    i = 0
+    j = 0
+    min_n = n_1 if n_1 <= n_2 else n_2
+    for k in range(p, p + min_n):
+        if left[i] <= right[j]:
+            A[k] = left[i]
+            i += 1
+        else:
+            A[k] = right[j]
+            j += 1
+    for k in range(p + min_n, r + 1):
+        if n_1 >= n_2:
+            A[k] = left[i]
+            i += 1
+        else:
+            A[k] = right[j]
+            j += 1
+    pass
+
+
+def merge_sort(A, p, r):
+    # make p and r optional and add optional compare function
+    if p < r:
+        q = math.floor((p + r) / 2)
+        merge_sort(A, p, q)
+        merge_sort(A, q + 1, r)
+        merge(A, p, q, r)
+    pass
+
+
+B = [4, 3, 2, 1]
+
+merge_sort(B, 0, 3)
+
+print(B)
