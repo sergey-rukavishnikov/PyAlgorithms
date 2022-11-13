@@ -1,1 +1,1 @@
-I do not know what to write here
+I am writing a library of functions in one Python and a parallel one in Common Lisp (see https://github.com/sergey-rukavishnikov/my-algorithms.git).
