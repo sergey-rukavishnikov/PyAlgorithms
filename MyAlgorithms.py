@@ -72,8 +72,20 @@ def merge_sort(A, p, r):
     pass
 
 
-B = [4, 3, 2, 1]
-
-merge_sort(B, 0, 3)
-
-print(B)
+def binary_search(arr, des_el):
+    bot = 0
+    top = len(arr) - 1
+    if arr[bot] > des_el or arr[top] < des_el:
+        return None
+    mid = math.floor((bot + top)/2)
+    while arr[mid] != des_el and bot != top:
+        if mid >= des_el:
+            top = mid
+        else:
+            bot = mid
+        mid = math.floor((bot + top)/2)
+    if arr[mid] == des_el:
+        return mid
+    else:
+        return None
+    pass
