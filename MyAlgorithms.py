@@ -33,9 +33,15 @@ def comp(a, b):
     pass
 
 
-def merge(arr1, arr2, destination=None, comp_func=None):
-    if destination is None:
-        destination = []
+def merge(arr1, arr2, comp_func=None):
+    """
+
+    :param arr1:
+    :param arr2:
+    :param comp_func:
+    :return:
+    """
+    destination = []
     i = j = 0
     len1 = len(arr1)
     len2 = len(arr2)
@@ -75,17 +81,30 @@ def merge(arr1, arr2, destination=None, comp_func=None):
 
 
 def merge_sort(array, comp_func=None, bot=0, top=None):
+    """
+
+    :param array:
+    :param comp_func:
+    :param bot:
+    :param top:
+    :return:
+    """
     if top is None:
         top = len(array)
     if bot < top:
         mid = math.floor((bot + top) / 2)
         merge_sort(array, bot=bot, top=mid)
         merge_sort(array, bot=mid + 1, top=top)
-        print(array[bot:mid], array[mid + 1: top])
-        merge(array[bot:mid], array[mid + 1: top], comp_func=comp_func)
+        array[bot:top + 1] = merge(array[bot:mid + 1], array[mid + 1:top + 1], comp_func=comp_func)
 
 
 def binary_search(arr, des_el):
+    """
+
+    :param arr:
+    :param des_el:
+    :return:
+    """
     bot = 0
     top = len(arr) - 1
     if arr[bot] > des_el or arr[top] < des_el:
@@ -102,8 +121,3 @@ def binary_search(arr, des_el):
     else:
         return None
     pass
-
-
-arr = [5, 2, 3, 1, 10, 4, 7]
-#merge_sort(arr)
-print(arr[0:4])
