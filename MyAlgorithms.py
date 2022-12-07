@@ -1,4 +1,5 @@
 import math
+import random
 
 
 def insertion_sort(arr, comp_func=None):
@@ -96,6 +97,7 @@ def merge_sort(array, comp_func=None, bot=0, top=None):
         merge_sort(array, bot=bot, top=mid)
         merge_sort(array, bot=mid + 1, top=top)
         array[bot:top + 1] = merge(array[bot:mid + 1], array[mid + 1:top + 1], comp_func=comp_func)
+    return array
 
 
 def binary_search(arr, search_el):
@@ -112,7 +114,7 @@ def binary_search(arr, search_el):
     mid = math.floor((bot + top) / 2)
     while arr[mid] != search_el and bot < mid < top:
         if mid >= search_el:
-            top = mid
+            top = miduniform
             mid = math.floor((bot + top) / 2)
         else:
             bot = mid
@@ -121,3 +123,9 @@ def binary_search(arr, search_el):
     pass
 
 
+def randomize_in_place(array):
+    n = len(array)
+    for i in range(0, n):
+        temp = random.randint(i, n - 1)
+        array[i], array[temp] = array[temp], array[i]
+    return array
