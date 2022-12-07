@@ -98,26 +98,26 @@ def merge_sort(array, comp_func=None, bot=0, top=None):
         array[bot:top + 1] = merge(array[bot:mid + 1], array[mid + 1:top + 1], comp_func=comp_func)
 
 
-def binary_search(arr, des_el):
+def binary_search(arr, search_el):
     """
 
     :param arr:
-    :param des_el:
+    :param search_el:
     :return:
     """
     bot = 0
     top = len(arr) - 1
-    if arr[bot] > des_el or arr[top] < des_el:
+    if arr[bot] > search_el or arr[top] < search_el:
         return None
     mid = math.floor((bot + top) / 2)
-    while arr[mid] != des_el and bot != top:
-        if mid >= des_el:
+    while arr[mid] != search_el and bot < mid < top:
+        if mid >= search_el:
             top = mid
+            mid = math.floor((bot + top) / 2)
         else:
             bot = mid
-        mid = math.floor((bot + top) / 2)
-    if arr[mid] == des_el:
-        return mid
-    else:
-        return None
+            mid = math.ceil((bot + top) / 2)
+    return mid if arr[mid] == search_el else None
     pass
+
+
