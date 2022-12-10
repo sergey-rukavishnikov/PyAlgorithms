@@ -114,7 +114,7 @@ def binary_search(arr, search_el):
     mid = math.floor((bot + top) / 2)
     while arr[mid] != search_el and bot < mid < top:
         if mid >= search_el:
-            top = miduniform
+            top = mid
             mid = math.floor((bot + top) / 2)
         else:
             bot = mid
@@ -129,3 +129,16 @@ def randomize_in_place(array):
         temp = random.randint(i, n - 1)
         array[i], array[temp] = array[temp], array[i]
     return array
+
+
+def on_line_maximum(array):
+    n = len(array)
+    k = math.ceil(n - 1 / math.e)
+    maximum = array[random.randint(0, k - 1)]
+    for i in range(0, k):
+        if array[i] > maximum:
+            maximum = array[i]
+    for i in range(k + 1, n):
+        if array[i] > maximum:
+            return i
+    return n - 1
